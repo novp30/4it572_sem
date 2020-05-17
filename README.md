@@ -1,29 +1,49 @@
-# README #
+## Installation Guide
+- Install GIT - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+- Install Docker - https://www.docker.com/products/docker-desktop
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Build/Run
+- Source code of the React app is based on "react-shopping-cart" app made under MIT license by Jefferson Ribeiro
 
-### What is this repository for? ###
+#### Requirements
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+- Node.js
+- NPM
 
-### How do I get set up? ###
+```javascript
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+/* First, Install the needed packages */
+npm install
 
-### Contribution guidelines ###
+/* Then start both Node and React */
+npm start
 
-* Writing tests
-* Code review
-* Other guidelines
+/* To run the tests */
+npm run test
 
-### Who do I talk to? ###
+/* Build sources */
+npm run build
 
-* Repo owner or admin
-* Other community or team contact
+/* Running e2e tests */
+npm run wdio
+
+/* Deploy to Firebase */
+./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+
+
+```
+
+## About tests .
+
+- Unit tests
+  - All components have at least a basic smoke test
+- Integration tests
+  - Fetch product and add to cart properly
+- e2e
+  - Webdriverio - Add and remove product from cart
+
+### Copyright and license
+
+The MIT License (MIT). Please see License File for more information.
+
+Try to trigger
