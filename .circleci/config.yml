@@ -21,7 +21,6 @@ jobs:
     <<: *vse
     docker:
       - image: circleci/python:3.6.4
-    context: 4it572_sem # name of deploy context in CircleCI
     steps:
       - attach_workspace:
           at: .
