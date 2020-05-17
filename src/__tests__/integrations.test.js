@@ -66,7 +66,7 @@ describe('Integrations', () => {
     );
 
     /* Before fetch the shelf should contain 0 products in it */
-    expect(wrapped.find(ShelfHeader).props().productsLength).toEqual(5);
+    expect(wrapped.find(ShelfHeader).props().productsLength).toEqual(0);
 
     moxios.wait(() => {
       wrapped.update();
