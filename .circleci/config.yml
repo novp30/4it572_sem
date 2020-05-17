@@ -21,6 +21,7 @@ jobs:
     <<: *vse
     docker:
       - image: circleci/python:3.6.4
+    context: 4it572_sem # name of deploy context in CircleCI
     steps:
       - attach_workspace:
           at: .
@@ -28,10 +29,12 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
           name: "Install ansible lint"
-          command: pip install ansible-lint
+          command: pip install ansible boto boto3
       - run:
-          name: "Get ansible lint version"
-          command: ansible-lint --version
+          name: "Run Ansible deploy script"
+          command: ansible-playbook ../.ansible/aws_deploy.yml \
+            --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key security_token=$aws_security_token"
+
 
 #      - run: ansible-playbook ../.ansible/aws_deploy.yaml
 
