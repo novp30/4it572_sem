@@ -31,7 +31,7 @@ jobs:
           command: pip install ansible boto boto3
       - add_ssh_keys:
           fingerprints:
-            - "02:f5:53:fd:1c:9b:e7:6d:bf:d5:c3:04:66:87:26:5d:30:49:15:80"
+            - "84:29:dc:a3:7a:9d:53:cd:a4:67:dc:e4:c7:e2:54:6c"
       - run:
           name: "Set to deploy directory"
           command: cd deploy/
