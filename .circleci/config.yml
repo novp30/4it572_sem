@@ -32,7 +32,7 @@ jobs:
       - run:
           name: "Set to deploy directory"
           command: cd deploy/
-      - run: ls -l
+      - run: cat deploy/aws_deploy.yml
 #      - run:
 #          name: "Run Ansible deploy script"
 #          command: ansible-playbook aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key security_token=$aws_security_token"
