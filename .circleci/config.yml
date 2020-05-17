@@ -4,17 +4,17 @@ vse: &vse
 
 version: 2.1
 jobs:
-#  build:
-#    <<: *vse
-#    steps:
-#      - checkout
-#      - run: npm install
-#      - run: npm run test
-#      - run: npm run build
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - .
+  build:
+    <<: *vse
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
   deploy:
     description: "Deploy app to AWS"
@@ -24,27 +24,26 @@ jobs:
     working_directory: ~/.circleci
     steps:
       - checkout
-#      - run: sudo chown -R circleci:circleci /usr/local/bin
-#      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-#      - run:
-#          name: "Install ansible ..."
-#          command: pip install ansible boto boto3
-#      - run:
-#          name: "Set to deploy directory"
-#          command: cd deploy/
-      - run: echo "ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=aws_session_token""
-#      - run:
-#          name: "Run Ansible deploy script"
-#          command: ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=aws_session_token"
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run:
+          name: "Install ansible ..."
+          command: pip install ansible boto boto3
+      - run:
+          name: "Set to deploy directory"
+          command: cd deploy/
+      - run:
+          name: "Run Ansible deploy script"
+          command: ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token"
 
 workflows:
   version: 2.1
   build-and-deploy:
     jobs:
-#      - build
-      - deploy
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
