@@ -15,14 +15,24 @@ jobs:
           root: .
           paths:
             - .
+
   deploy:
     description: "Execute ansible-lint command"
     <<: *vse
+    docker:
+      - image: circleci/python:3.6.4
     steps:
       - attach_workspace:
           at: .
-      - run: pip  install ansible-lit
-      - run: ansible-lint --version
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run:
+          name: "Install ansible lint"
+          command: pip install ansible-lint
+      - run:
+          name: "Get ansible lint version"
+          command: ansible-lint --version
+
 #      - run: ansible-playbook ../.ansible/aws_deploy.yaml
 
 workflows:
