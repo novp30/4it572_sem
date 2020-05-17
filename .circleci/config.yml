@@ -29,12 +29,15 @@ jobs:
       - run:
           name: "Install ansible ..."
           command: pip install ansible boto boto3
+      - add_ssh_keys:
+          fingerprints:
+            - "02:f5:53:fd:1c:9b:e7:6d:bf:d5:c3:04:66:87:26:5d:30:49:15:80"
       - run:
           name: "Set to deploy directory"
           command: cd deploy/
       - run:
           name: "Run Ansible deploy script"
-          command: ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token"
+          command: ansible-playbook deploy/aws_deploy.yml -user ubuntu --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token"
 
 workflows:
   version: 2.1
