@@ -32,7 +32,7 @@ jobs:
 #      - run:
 #          name: "Set to deploy directory"
 #          command: cd deploy/
-      - run: echo (ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=aws_session_token")
+      - run: echo "ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=aws_session_token""
 #      - run:
 #          name: "Run Ansible deploy script"
 #          command: ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=aws_session_token"
