@@ -1,6 +1,5 @@
 vse: &vse
   docker:
-    - image: circleci/python:3.6.4
     - image: circleci/node:8.11.3
 
 version: 2.1
@@ -16,9 +15,12 @@ jobs:
           root: .
           paths:
             - .
+
   deploy:
     description: "Execute ansible-lint command"
     <<: *vse
+    docker:
+      - image: circleci/python:3.6.4
     steps:
       - attach_workspace:
           at: .
