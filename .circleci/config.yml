@@ -24,18 +24,17 @@ jobs:
     working_directory: ~/.circleci
     steps:
       - checkout
-      - run: ls
-#      - run: sudo chown -R circleci:circleci /usr/local/bin
-#      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-#      - run:
-#          name: "Install ansible ..."
-#          command: pip install ansible boto boto3
-#      - run:
-#          name: "Set to deploy directory"
-#          command: cd deploy/
-#      - run:
-#          name: "Run Ansible deploy script"
-#          command: ansible-playbook aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key security_token=$aws_security_token"
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run:
+          name: "Install ansible ..."
+          command: pip install ansible boto boto3
+      - run:
+          name: "Set to deploy directory"
+          command: cd deploy/
+      - run:
+          name: "Run Ansible deploy script"
+          command: ansible-playbook aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key security_token=$aws_security_token"
 
 #      - run: ansible-playbook ../.ansible/aws_deploy.yaml
 
