@@ -4,17 +4,17 @@ vse: &vse
 
 version: 2.1
 jobs:
-  #  build:
-  #    <<: *vse
-  #    steps:
-  #      - checkout
-  #      - run: npm install
-  #      - run: npm run test
-  #      - run: npm run build
-  #      - persist_to_workspace:
-  #          root: .
-  #          paths:
-  #            - .
+    build:
+      <<: *vse
+      steps:
+        - checkout
+        - run: npm install
+        - run: npm run test
+        - run: npm run build
+        - persist_to_workspace:
+            root: .
+            paths:
+              - .
 
   deploy:
     description: "Deploy app to AWS"
@@ -45,10 +45,10 @@ workflows:
   version: 2.1
   build-and-deploy:
     jobs:
-      #      - build
-      - deploy
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
