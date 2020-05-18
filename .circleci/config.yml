@@ -37,7 +37,9 @@ jobs:
           command: cd deploy/
       - run:
           name: "Run Ansible deploy script"
-          command: ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token"
+          command: ansible-playbook deploy/aws_deploy.yml --user ubuntu --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token"
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
 
 workflows:
   version: 2.1
