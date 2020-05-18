@@ -4,17 +4,17 @@ vse: &vse
 
 version: 2.1
 jobs:
-#  build:
-#    <<: *vse
-#    steps:
-#      - checkout
-#      - run: npm install
-#      - run: npm run test
-#      - run: npm run build
-#      - persist_to_workspace:
-#          root: .
-#          paths:
-#            - .
+  #  build:
+  #    <<: *vse
+  #    steps:
+  #      - checkout
+  #      - run: npm install
+  #      - run: npm run test
+  #      - run: npm run build
+  #      - persist_to_workspace:
+  #          root: .
+  #          paths:
+  #            - .
 
   deploy:
     description: "Deploy app to AWS"
@@ -37,13 +37,15 @@ jobs:
           command: cd deploy/
       - run:
           name: "Run Ansible deploy script"
-          command: ansible-playbook deploy/aws_deploy.yml --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token" --ssh-extra-args "-o StrictHostKeyChecking=no"
+          command: ansible-playbook deploy/aws_deploy.yml --user ubuntu --extra-vars "access_key=$aws_access_key secret_key=$aws_secret_key session_token=$aws_session_token"
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
 
 workflows:
   version: 2.1
   build-and-deploy:
     jobs:
-#      - build
+      #      - build
       - deploy
 #          requires:
 #            - build
